@@ -1,5 +1,6 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import './ContentEditor.css';
 
 class ContentEditor extends React.Component {
     constructor(props) {
