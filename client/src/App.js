@@ -17,9 +17,41 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
-			activeStory: 'feed'
+			appId: 7150594,
+			activeStory: 'feed',
+			fetchedUser: null,
+			token: null,
+			tokenScope: null,
+			groups: null
 		};
 		this.onStoryChange = this.onStoryChange.bind(this);
+	}
+
+	componentDidMount() {
+		this.apiRequests();
+		console.log(this.state)
+	}
+
+	async apiRequests() {
+		this.state.fetchedUser = await connect.sendPromise('VKWebAppGetUserInfo', {});
+
+		const token = await connect.sendPromise("VKWebAppGetAuthToken", {"app_id": this.state.appId, "scope": "groups"});
+		this.state.token = token.access_token;
+		this.state.tokenScope = token.scope;
+
+		const groups = await connect.sendPromise("VKWebAppCallAPIMethod", {
+				"method": "groups.get",
+				"request_id": "getGroups",
+				"params": {
+					"user_id": this.state.fetchedUser.id,
+					"extended": "1",
+					"fields": "description",
+					"count": "100",
+					"v": "5.101",
+					"access_token": this.state.token
+				}
+		});
+		this.state.groups = groups.response;
 	}
 
 	onStoryChange (e) {
@@ -67,7 +99,7 @@ class App extends React.Component {
 					<Favorites id="favorites"/>
 				</View>
 				<View id="more" activePanel="more">
-					<More id="more"/>
+					<More id="more" groups={this.state.groups}/>
 				</View>
 			</Epic>
 		)
