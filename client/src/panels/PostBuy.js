@@ -11,13 +11,9 @@ class PostBuy extends React.Component {
   render() {
     return (
       <Panel id={this.props.id}>
-        <PanelHeader>Лента</PanelHeader>
-        <Div>
-          <p>123</p>
-        </Div>
+        <PanelHeader>Предпросмотр</PanelHeader>
       </Panel>
     );
   }
 }
-
 export default PostBuy;

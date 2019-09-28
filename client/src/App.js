@@ -11,6 +11,7 @@ import Feed from "./panels/Feed.js";
 import Favorites from "./panels/Favorites.js";
 import Discover from "./panels/Discover.js";
 import More from "./panels/More.js";
+import PostBuy from "./panels/PostBuy.js";
 
 class App extends React.Component {
   constructor(props) {

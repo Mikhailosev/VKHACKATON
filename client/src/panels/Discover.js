@@ -1,20 +1,19 @@
-import React from 'react';
-import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
+import React from "react";
+import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
+import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
 
 class Discover extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return(
-            <Panel id={this.props.id}>
-                <PanelHeader>Избранное</PanelHeader>
-            </Panel>
-        )
-    }
-
-};
+  render() {
+    return (
+      <Panel id={this.props.id}>
+        <PanelHeader>Поиск</PanelHeader>
+      </Panel>
+    );
+  }
+}
 
 export default Discover;

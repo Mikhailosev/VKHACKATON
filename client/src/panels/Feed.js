@@ -1,7 +1,7 @@
 import React from "react";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
-import { Group, Div } from "@vkontakte/vkui";
+import { Button, Div, View, Group } from "@vkontakte/vkui";
 import logo from "../img/logo.png";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
@@ -9,6 +9,9 @@ import "./Feed.css";
 class Feed extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      activePanel: "PostBuy"
+    };
   }
 
   render() {
@@ -16,8 +19,6 @@ class Feed extends React.Component {
       <Panel id={this.props.id}>
         <PanelHeader>Лента</PanelHeader>
         <Div
-          onClick={this.props.go}
-          data-to="PostBuy"
           style={{
             height: "auto",
             marginLeft: "2%",
