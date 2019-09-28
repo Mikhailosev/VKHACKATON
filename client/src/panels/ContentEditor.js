@@ -72,7 +72,7 @@ class ContentEditor extends React.Component {
           <input
             style={{
               boxShadow: "0 0 5px #999999",
-              fontSize: "1.5rem",
+              fontSize: "1.1rem",
               color: "black",
               width: "97%",
               height: "2rem",
@@ -81,6 +81,7 @@ class ContentEditor extends React.Component {
               marginBottom: "1%",
               boxSizing: "border-box",
               padding: "5px",
+              paddingLeft: "10px",
               border: "1px solid lightgrey",
               borderRadius: "10px"
             }}
@@ -102,6 +103,8 @@ class ContentEditor extends React.Component {
               marginBottom: "1%",
               boxSizing: "border-box",
               padding: "5px",
+              paddingLeft: "10px",
+              paddingRight: "10px",
               border: "1px solid lightgrey",
               borderRadius: "10px"
             }}
@@ -129,7 +132,7 @@ class ContentEditor extends React.Component {
             }}
           >
             <Editor
-              initialValue="<p>This is the initial content of the editor</p>"
+              initialValue=""
               init={{
                 height: 300,
                 menubar: false,
