@@ -44,22 +44,24 @@ class App extends React.Component {
       app_id: this.state.appId,
       scope: "groups"
     });
-    this.state.token = token.access_token;
-    this.state.tokenScope = token.scope;
+    this.setState({ token: token.access_token });
+    this.setState({ tokenScope: token.scope });
 
     const groups = await connect.sendPromise("VKWebAppCallAPIMethod", {
       method: "groups.get",
       request_id: "getGroups",
       params: {
+        filter: ["admin", "editor", "moder"],
         user_id: this.state.fetchedUser.id,
         extended: "1",
         fields: "description",
-        count: "100",
+        count: "999",
         v: "5.101",
         access_token: this.state.token
       }
     });
-    this.state.groups = groups.response;
+    this.setState({ groups: groups.response });
+    console.log(this.state);
   }
 
   onStoryChange(e) {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Group, Select } from "@vkontakte/vkui";
+import { Group, Select, Button } from "@vkontakte/vkui";
 import { Editor } from "@tinymce/tinymce-react";
 import axios from "axios";
 import "./ContentEditor.css";
@@ -72,7 +72,7 @@ class ContentEditor extends React.Component {
           <input
             style={{
               boxShadow: "0 0 5px #999999",
-              fontSize: "1.75rem",
+              fontSize: "1.5rem",
               color: "black",
               width: "97%",
               height: "2rem",
@@ -92,6 +92,7 @@ class ContentEditor extends React.Component {
             style={{
               boxShadow: "0 0 5px #999999",
               resize: "none",
+              fontSize: "1.5rem",
               height: "30vh",
               outline: "none",
               border: "1px solid #999",
@@ -120,50 +121,40 @@ class ContentEditor extends React.Component {
             <option value={true}>Платный</option>
             <option value={false}>Бесплатный</option>
           </Select>
-          <input
-            className="inputfile"
-            style={{
-              width: "100%"
-            }}
-            id="file"
-            type="file"
-            name="file"
-            style={{
-              display: "flex",
-              width: "100%"
-            }}
-            onChange={this.fileChangedHandler}
-          />
-          <label
-            style={{
-              boxShadow: "0 0 5px #999999",
-              textAlign: "center",
-              margin: "10px",
-              padding: "10px"
-            }}
-            for="file"
-          >
-            Выберите фотографию
+          <label className="custom-file-upload">
+            <input onChange={this.fileChangedHandler} type="file" />
+            Загрузить картинку
           </label>
-
-          <Editor
-            initialValue="<p>This is the initial content of the editor</p>"
-            init={{
-              height: 300,
-              menubar: false,
-              plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table paste code help wordcount"
-              ],
-              toolbar:
-                "undo redo | formatselect | image | bold italic backcolor | \
+          <div
+            style={{
+              marginTop: "15px"
+            }}
+          >
+            <Editor
+              initialValue="<p>This is the initial content of the editor</p>"
+              init={{
+                height: 300,
+                menubar: false,
+                plugins: [
+                  "advlist autolink lists link image charmap print preview anchor",
+                  "searchreplace visualblocks code fullscreen",
+                  "insertdatetime media table paste code help wordcount"
+                ],
+                toolbar:
+                  "undo redo | formatselect | image | bold italic backcolor | \
                             alignleft aligncenter alignright alignjustify | \
                             bullist numlist outdent indent | removeformat | help"
-            }}
-            onChange={this.handleEditorChange}
-          />
-          <button>Загрузить пост</button>
+              }}
+              onChange={this.handleEditorChange}
+            />
+          </div>
+          <Button
+            style={{ width: "80%", marginLeft: "10%" }}
+            size="xl"
+            level="secondary"
+          >
+            Отправить пост{" "}
+          </Button>{" "}
         </form>
         {this.state.content ? (
           <div
