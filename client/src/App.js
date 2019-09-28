@@ -291,6 +291,13 @@ class App extends React.Component {
           }}
         />
         <Route
+          path="/postBuy/:postId"
+          exact
+          render={props => {
+            return <PostBuy {...props} />;
+          }}
+        />
+        <Route
           path="/discover"
           render={props => (
             <View id="discover" activePanel="discover">

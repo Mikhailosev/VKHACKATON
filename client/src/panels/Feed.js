@@ -22,38 +22,83 @@ class Feed extends React.Component {
     if (this.props.data.posts) {
       console.log(this.props);
 
-      posts = this.props.data.posts.map(res => (
-        <Link
-          to={`/post/` + res.id}
-          key={res.id}
-          style={{
-            textDecoration: "none",
-            marginLeft: "5%",
-            marginRight: "5%"
-          }}
-        >
-          <Div className="postplace">
-            <img
-              className="previewlogo"
-              src={`https://arcane-savannah-41356.herokuapp.com/` + res.image}
-            />
-            <h1>{res.title}</h1>
-            <h2>{res.teaser}</h2>
-            <h4>{res.timetoread}</h4>
-            {/* <div
+      posts = this.props.data.posts.map(res => {
+        if (res.buy === true) {
+          return (
+            <Link
+              to={`/postBuy/` + res.id}
+              key={res.id}
+              style={{
+                textDecoration: "none",
+                marginLeft: "5%",
+                marginRight: "5%"
+              }}
+            >
+              <Div className="postplace">
+                <img
+                  className="previewlogo"
+                  src={
+                    `https://arcane-savannah-41356.herokuapp.com/` + res.image
+                  }
+                />
+                <h1>{res.title}</h1>
+                <h2>{res.teaser}</h2>
+                <h4></h4>
+                {/* <div
             className="content"
             dangerouslySetInnerHTML={{ __html: res.content }}
           ></div> */}
 
-            <img className="gray" />
-            <img
-              className="photo ph"
-              src={`https://arcane-savannah-41356.herokuapp.com/` + res.image}
-            />
-          </Div>
-        </Link>
-      ));
-      console.log(posts);
+                <img className="gray" />
+                <img
+                  className="photo ph"
+                  src={
+                    `https://arcane-savannah-41356.herokuapp.com/` + res.image
+                  }
+                />
+              </Div>
+            </Link>
+          );
+        }
+        if (res.buy === false) {
+          return (
+            <Link
+              to={`/post/` + res.id}
+              key={res.id}
+              style={{
+                textDecoration: "none",
+                marginLeft: "5%",
+                marginRight: "5%"
+              }}
+            >
+              <Div className="postplace">
+                <img
+                  className="previewlogo"
+                  src={
+                    `https://arcane-savannah-41356.herokuapp.com/` + res.image
+                  }
+                />
+                <h1>{res.title}</h1>
+                <h2>{res.teaser}</h2>
+                <h4></h4>
+                {/* <div
+            className="content"
+            dangerouslySetInnerHTML={{ __html: res.content }}
+          ></div> */}
+
+                <img className="gray" />
+                <img
+                  className="photo ph"
+                  src={
+                    `https://arcane-savannah-41356.herokuapp.com/` + res.image
+                  }
+                />
+              </Div>
+            </Link>
+          );
+        }
+        console.log(posts);
+      });
     }
     console.log(this.props);
     return (

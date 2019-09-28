@@ -8,7 +8,7 @@ import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import Icon24Back from "@vkontakte/icons/dist/24/back";
 import logo from "../img/logo.png";
 import { graphql } from "react-apollo";
-import { getPostQuery } from "../queries/queries";
+import { getPostFullQuery } from "../queries/queries";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
 
@@ -40,7 +40,7 @@ class FullPost extends React.Component {
   }
 }
 
-export default graphql(getPostQuery, {
+export default graphql(getPostFullQuery, {
   options: props => {
     console.log(props);
     return {

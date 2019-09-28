@@ -119,8 +119,8 @@ class ContentEditor extends React.Component {
             onChange={this.changeBuy}
             placeholder="Выберите пол"
           >
-            <option value={true}>Платный</option>
-            <option value={false}>Бесплатный</option>
+            <option value={false}>Платный</option>
+            <option value={true}>Бесплатный</option>
           </Select>
           <label className="custom-file-upload">
             <input onChange={this.fileChangedHandler} type="file" />
@@ -145,7 +145,7 @@ class ContentEditor extends React.Component {
                   " image | bold italic backcolor | \
                             alignleft aligncenter alignright alignjustify | \
                             bullist numlist | removeformat ",
-                content_style: 'img {width: 100%; height: auto;}'
+                content_style: "img {width: 100%; height: auto;}"
               }}
               onChange={this.handleEditorChange}
             />
