@@ -36,7 +36,8 @@ class Navigation extends React.Component {
           bottom: "0",
           left: "0",
           backgroundColor: "red",
-          width: "100%"
+          width: "100%",
+          zIndex: "100"
         }}
       >
         <Tabbar>
@@ -44,8 +45,8 @@ class Navigation extends React.Component {
             to="/feed"
             style={{
               textDecoration: "none",
-              marginLeft: "5%",
-              marginRight: "5%"
+              width: "25%",
+              marginTop: "3px"
             }}
           >
             <TabbarItem
@@ -61,8 +62,8 @@ class Navigation extends React.Component {
             to="/discover"
             style={{
               textDecoration: "none",
-              marginLeft: "5%",
-              marginRight: "5%"
+              width: "25%",
+                marginTop: "3px"
             }}
           >
             <TabbarItem
@@ -78,15 +79,15 @@ class Navigation extends React.Component {
             to="/favorites"
             style={{
               textDecoration: "none",
-              marginLeft: "5%",
-              marginRight: "5%"
+              width: "25%",
+                marginTop: "3px"
             }}
           >
             <TabbarItem
               onClick={this.onStoryChange}
-              selected={this.state.activeStory === "discover"}
-              data-story="discover"
-              text="Поиск"
+              selected={this.state.activeStory === "favorites"}
+              data-story="favorites"
+              text="Избранное"
             >
               <Icon28FavoriteOutline />
             </TabbarItem>
@@ -95,8 +96,8 @@ class Navigation extends React.Component {
             to="/more"
             style={{
               textDecoration: "none",
-              marginLeft: "5%",
-              marginRight: "5%"
+              width: "25%",
+                marginTop: "3px"
             }}
           >
             <TabbarItem
