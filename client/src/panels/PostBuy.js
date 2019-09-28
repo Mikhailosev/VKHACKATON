@@ -10,6 +10,8 @@ import logo from "../img/logo.png";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
 
+import Icon24Share from '@vkontakte/icons/dist/24/share';
+
 const osName = platform();
 
 const PostBuy = props => (
@@ -30,13 +32,15 @@ const PostBuy = props => (
       <p className="posttext">
         В этой статье вы не узнаете ничего нового. Совсем ничего(
       </p>
+        <Icon24Share onClick={props.toggleModal} />
     </div>
   </Panel>
 );
 
 PostBuy.propTypes = {
   id: PropTypes.string.isRequired,
-  go: PropTypes.func.isRequired
+  go: PropTypes.func.isRequired,
+    toggleModal: PropTypes.func.isRequired
 };
 
 export default PostBuy;

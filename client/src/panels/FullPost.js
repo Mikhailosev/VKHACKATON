@@ -10,6 +10,8 @@ import logo from "../img/logo.png";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
 
+import Icon24Share from '@vkontakte/icons/dist/24/share';
+
 const osName = platform();
 
 const FullPost = props => (
@@ -36,13 +38,15 @@ const FullPost = props => (
       </p>
       <img className="imagepost" src={photo} alt="Image" />
       <p className="posttext">Вот и сказочке канец... </p>
+        <Icon24Share onClick={props.toggleModal} />
     </div>
   </Panel>
 );
 
 FullPost.propTypes = {
   id: PropTypes.string.isRequired,
-  go: PropTypes.func.isRequired
+  go: PropTypes.func.isRequired,
+    toggleModal: PropTypes.func.isRequired
 };
 
 export default FullPost;
