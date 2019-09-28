@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {View, platform, IOS, Header, Div, Group, InfoRow, List, Cell} from "@vkontakte/vkui";
+import { platform, IOS } from "@vkontakte/vkui";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
 import HeaderButton from "@vkontakte/vkui/dist/components/HeaderButton/HeaderButton";
@@ -9,6 +9,7 @@ import Icon24Back from "@vkontakte/icons/dist/24/back";
 import logo from "../img/logo.png";
 import { graphql } from "react-apollo";
 import { getPostQuery } from "../queries/queries";
+import photo from "../img/photo.jpg";
 import "./Feed.css";
 
 class FullPost extends React.Component {
@@ -85,7 +86,7 @@ class FullPost extends React.Component {
   }
 }
 
-export default graphql(getPostQuery, {
+export default graphql(getPostFullQuery, {
   options: props => {
     console.log(props);
     return {

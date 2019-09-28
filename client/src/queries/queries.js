@@ -5,15 +5,13 @@ export const getPostsQuery = gql`
     posts {
       id
       title
-      teaser
       viewed
       image
       buy
-      content
     }
   }
 `;
-export const getPostQuery = gql`
+export const getPostFullQuery = gql`
   query($id: ID!) {
     post(id: $id) {
       id
@@ -23,6 +21,18 @@ export const getPostQuery = gql`
       image
       buy
       content
+    }
+  }
+`;
+export const getPostBuyQuery = gql`
+  query($id: ID!) {
+    post(id: $id) {
+      id
+      title
+      teaser
+      viewed
+      image
+      buy
     }
   }
 `;
