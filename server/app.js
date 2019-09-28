@@ -4,11 +4,14 @@ const graphqlHTTP = require("express-graphql");
 const schema = require("./schema/schema");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const path = require("path");
 let app = express();
 const cors = require("cors");
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/uploads", express.static("uploads"));
+app.use(express.static(path.join(__dirname, "client/")));
 
 //Connect to mlab DB
 const port = process.env.PORT || 5000;

@@ -1,5 +1,7 @@
 import React from "react";
-import { Panel, PanelHeader, Search } from "@vkontakte/vkui";
+import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
+import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
+import { withRouter } from "react-router-dom";
 
 class Discover extends React.Component {
   constructor(props) {
@@ -8,14 +10,21 @@ class Discover extends React.Component {
 
   render() {
     return (
-      <Panel id={this.props.id}>
-        <PanelHeader>
-          <Search theme="header" />
-
-        </PanelHeader>
-      </Panel>
+      <div>
+        <div
+          style={{
+            display: "block",
+            width: "100%",
+            top: "0",
+            left: "0",
+            height: "50px",
+            backgroundColor: "#4680c2",
+            opacity: "1"
+          }}
+        ></div>
+      </div>
     );
   }
 }
 
-export default Discover;
+export default withRouter(Discover);

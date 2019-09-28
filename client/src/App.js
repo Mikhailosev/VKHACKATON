@@ -1,18 +1,21 @@
 import React from "react";
 import connect from "@vkontakte/vk-connect";
-import { View, Epic, Tabbar, TabbarItem } from "@vkontakte/vkui";
+import { View, Epic, Tabbar, TabbarItem, Group } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 import Icon28FavoriteOutline from "@vkontakte/icons/dist/28/favorite_outline";
 import Icon28More from "@vkontakte/icons/dist/28/more";
 import Icon28Newsfeed from "@vkontakte/icons/dist/28/newsfeed";
 import Icon28Search from "@vkontakte/icons/dist/28/search";
-
+import { withRouter, Link, Route } from "react-router-dom";
 import Feed from "./panels/Feed.js";
 import Favorites from "./panels/Favorites.js";
 import Discover from "./panels/Discover.js";
 import More from "./panels/More.js";
 import PostBuy from "./panels/PostBuy.js";
 import FullPost from "./panels/FullPost.js";
+import GroupView from "./panels/GroupView";
+import GroupForm from "./panels/GroupForm";
+import Navigation from "./panels/Navigation.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -20,16 +23,19 @@ class App extends React.Component {
 
     this.state = {
       appId: 7150594,
-      activeStory: "feed",
+      activeStory: "",
       fetchedUser: null,
       token: null,
       tokenScope: null,
-      groups: null
+      groups: null,
+      group: null,
+      showEpic: true
     };
     this.onStoryChange = this.onStoryChange.bind(this);
   }
 
   componentDidMount() {
+    console.log(this.props);
     this.apiRequests();
     console.log(this.state);
   }
@@ -54,16 +60,15 @@ class App extends React.Component {
         filter: ["admin", "editor", "moder"],
         user_id: this.state.fetchedUser.id,
         extended: "1",
+        v: "5.101",
         fields: "description",
         count: "999",
-        v: "5.101",
         access_token: this.state.token
       }
     });
     this.setState({ groups: groups.response });
     console.log(this.state);
   }
-
   onStoryChange(e) {
     this.setState({ activeStory: e.currentTarget.dataset.story });
   }
@@ -71,90 +76,55 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.state.activeStory !== "fullPost" ? (
-          <Epic
-            activeStory={this.state.activeStory}
-            tabbar={
-              <Tabbar>
-                <TabbarItem
-                  onClick={this.onStoryChange}
-                  selected={this.state.activeStory === "feed"}
-                  data-story="feed"
-                  text="Новости"
-                >
-                  <Icon28Newsfeed />
-                </TabbarItem>
-                <TabbarItem
-                  onClick={this.onStoryChange}
-                  selected={this.state.activeStory === "discover"}
-                  data-story="discover"
-                  text="Поиск"
-                >
-                  <Icon28Search />
-                </TabbarItem>
-                <TabbarItem
-                  onClick={this.onStoryChange}
-                  selected={this.state.activeStory === "favorites"}
-                  data-story="favorites"
-                  text="Избранное"
-                >
-                  <Icon28FavoriteOutline />
-                </TabbarItem>
-                <TabbarItem
-                  onClick={this.onStoryChange}
-                  selected={this.state.activeStory === "more"}
-                  data-story="more"
-                  text="Ещё"
-                >
-                  <Icon28More />
-                </TabbarItem>
-              </Tabbar>
-            }
-          >
-            <View id="fullPost" activePanel="fullPost">
-              <FullPost go={this.onStoryChange} id="fullPost"></FullPost>
+        {this.state.fetchedUser ? <Navigation></Navigation> : null}
+
+        <Route
+          path="/favorites"
+          render={props => <Favorites go={this.onStoryChange} id="favorites" />}
+        />
+        <Route
+          path="/discover"
+          render={props => (
+            <View id="discover" activePanel="discover">
+              <Discover go={this.onStoryChange} id="discover" />
             </View>
-            <View id="postbuy" activePanel="postbuy">
-              <PostBuy go={this.onStoryChange} id="postbuy"></PostBuy>
-            </View>
+          )}
+        />
+        <Route
+          path="/feed"
+          render={props => (
             <View id="feed" activePanel="feed">
               <Feed id="feed" go={this.onStoryChange} />
             </View>
-            <View id="discover" activePanel="discover">
-              <Discover id="discover" />
-            </View>
-            <View id="favorites" activePanel="favorites">
-              <Favorites id="favorites" />
-            </View>
+          )}
+        />
+        <Route
+          path="/more"
+          render={props => (
             <View id="more" activePanel="more">
               <More id="more" groups={this.state.groups} />
             </View>
-          </Epic>
-        ) : (
-          <Epic activeStory={this.state.activeStory}>
-            <View id="fullPost" activePanel="fullPost">
-              <FullPost go={this.onStoryChange} id="fullPost"></FullPost>
+          )}
+        />
+        <Route
+          path="/group/:groupId"
+          render={props => (
+            <View id="group" activePanel="group">
+              <GroupView id="group" />
             </View>
-            <View id="postbuy" activePanel="postbuy">
-              <PostBuy go={this.onStoryChange} id="postbuy"></PostBuy>
+          )}
+        />
+        <Route
+          path="/register/"
+          render={props => (
+            <View id="group" activePanel="group">
+              <GroupForm groups={this.state.groups} id="group" />
             </View>
-            <View id="feed" activePanel="feed">
-              <Feed id="feed" go={this.onStoryChange} />
-            </View>
-            <View id="discover" activePanel="discover">
-              <Discover id="discover" />
-            </View>
-            <View id="favorites" activePanel="favorites">
-              <Favorites id="favorites" />
-            </View>
-            <View id="more" activePanel="more">
-              <More id="more" groups={this.state.groups} />
-            </View>
-          </Epic>
-        )}
+          )}
+        />
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

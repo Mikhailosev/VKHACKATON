@@ -4,6 +4,8 @@ import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader
 import logo from "../img/logo.png";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
+import { withRouter } from "react-router-dom";
+
 import { Button, Div, View, Group } from "@vkontakte/vkui";
 
 class Favorites extends React.Component {
@@ -13,8 +15,18 @@ class Favorites extends React.Component {
 
   render() {
     return (
-      <Panel id={this.props.id}>
-        <PanelHeader>Ваша платная лента</PanelHeader>
+      <div>
+        <div
+          style={{
+            display: "block",
+            width: "100%",
+            top: "0",
+            left: "0",
+            height: "50px",
+            backgroundColor: "#4680c2",
+            opacity: "1"
+          }}
+        ></div>
         <Div
           onClick={this.props.go}
           data-story="fullPost"
@@ -28,9 +40,9 @@ class Favorites extends React.Component {
           <img className="gray" />
           <img className="photo ph" src={photo} />
         </Div>
-      </Panel>
+      </div>
     );
   }
 }
 
-export default Favorites;
+export default withRouter(Favorites);
