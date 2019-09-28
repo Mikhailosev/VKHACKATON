@@ -97,7 +97,7 @@ router.post("/updatedPostViews/:postId", (req, res, next) => {
     res.send(result);
   });
 });
-router.delete("/delete/:postId", ensureAuthenticated, (req, res, next) => {
+router.delete("/delete/:postId", (req, res, next) => {
   const id = req.params.postId;
   Item.deleteOne({
     _id: id
