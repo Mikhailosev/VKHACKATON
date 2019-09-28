@@ -68,61 +68,89 @@ class App extends React.Component {
 
   render() {
     return (
-      <Epic
-        activeStory={this.state.activeStory}
-        tabbar={
-          <Tabbar>
-            <TabbarItem
-              onClick={this.onStoryChange}
-              selected={this.state.activeStory === "feed"}
-              data-story="feed"
-              text="Новости"
-            >
-              <Icon28Newsfeed />
-            </TabbarItem>
-            <TabbarItem
-              onClick={this.onStoryChange}
-              selected={this.state.activeStory === "discover"}
-              data-story="discover"
-              text="Поиск"
-            >
-              <Icon28Search />
-            </TabbarItem>
-            <TabbarItem
-              onClick={this.onStoryChange}
-              selected={this.state.activeStory === "favorites"}
-              data-story="favorites"
-              text="Избранное"
-            >
-              <Icon28FavoriteOutline />
-            </TabbarItem>
-            <TabbarItem
-              onClick={this.onStoryChange}
-              selected={this.state.activeStory === "more"}
-              data-story="more"
-              text="Ещё"
-            >
-              <Icon28More />
-            </TabbarItem>
-          </Tabbar>
-        }
-      >
-        <View id="fullPost" activePanel="fullPost">
-          <FullPost go={this.onStoryChange} id="fullPost"></FullPost>
-        </View>
-        <View id="feed" activePanel="feed">
-          <Feed id="feed" go={this.onStoryChange} />
-        </View>
-        <View id="discover" activePanel="discover">
-          <Discover id="discover" />
-        </View>
-        <View id="favorites" activePanel="favorites">
-          <Favorites id="favorites" />
-        </View>
-        <View id="more" activePanel="more">
-          <More id="more" groups={this.state.groups} />
-        </View>
-      </Epic>
+      <div>
+        {this.state.activeStory !== "fullPost" ? (
+          <Epic
+            activeStory={this.state.activeStory}
+            tabbar={
+              <Tabbar>
+                <TabbarItem
+                  onClick={this.onStoryChange}
+                  selected={this.state.activeStory === "feed"}
+                  data-story="feed"
+                  text="Новости"
+                >
+                  <Icon28Newsfeed />
+                </TabbarItem>
+                <TabbarItem
+                  onClick={this.onStoryChange}
+                  selected={this.state.activeStory === "discover"}
+                  data-story="discover"
+                  text="Поиск"
+                >
+                  <Icon28Search />
+                </TabbarItem>
+                <TabbarItem
+                  onClick={this.onStoryChange}
+                  selected={this.state.activeStory === "favorites"}
+                  data-story="favorites"
+                  text="Избранное"
+                >
+                  <Icon28FavoriteOutline />
+                </TabbarItem>
+                <TabbarItem
+                  onClick={this.onStoryChange}
+                  selected={this.state.activeStory === "more"}
+                  data-story="more"
+                  text="Ещё"
+                >
+                  <Icon28More />
+                </TabbarItem>
+              </Tabbar>
+            }
+          >
+            <View id="fullPost" activePanel="fullPost">
+              <FullPost go={this.onStoryChange} id="fullPost"></FullPost>
+            </View>
+            <View id="postbuy" activePanel="postbuy">
+              <PostBuy go={this.onStoryChange} id="postbuy"></PostBuy>
+            </View>
+            <View id="feed" activePanel="feed">
+              <Feed id="feed" go={this.onStoryChange} />
+            </View>
+            <View id="discover" activePanel="discover">
+              <Discover id="discover" />
+            </View>
+            <View id="favorites" activePanel="favorites">
+              <Favorites id="favorites" />
+            </View>
+            <View id="more" activePanel="more">
+              <More id="more" groups={this.state.groups} />
+            </View>
+          </Epic>
+        ) : (
+          <Epic activeStory={this.state.activeStory}>
+            <View id="fullPost" activePanel="fullPost">
+              <FullPost go={this.onStoryChange} id="fullPost"></FullPost>
+            </View>
+            <View id="postbuy" activePanel="postbuy">
+              <PostBuy go={this.onStoryChange} id="postbuy"></PostBuy>
+            </View>
+            <View id="feed" activePanel="feed">
+              <Feed id="feed" go={this.onStoryChange} />
+            </View>
+            <View id="discover" activePanel="discover">
+              <Discover id="discover" />
+            </View>
+            <View id="favorites" activePanel="favorites">
+              <Favorites id="favorites" />
+            </View>
+            <View id="more" activePanel="more">
+              <More id="more" groups={this.state.groups} />
+            </View>
+          </Epic>
+        )}
+      </div>
     );
   }
 }

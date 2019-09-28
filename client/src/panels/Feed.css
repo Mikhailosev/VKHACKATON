@@ -1,6 +1,17 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.postplace {
+  height: 50%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  border-radius: 30px 30px 30px 30px;
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 0 0 5px #999999;
+}
 h1 {
   font-size: 150%;
   text-align: center;
@@ -20,7 +31,7 @@ h3 {
   display: inline;
   position: absolute;
   right: 20px;
-  bottom: 4px;
+  bottom: 2px;
   color: rgb(216, 216, 216);
 }
 
@@ -32,14 +43,13 @@ h4 {
   color: rgb(216, 216, 216);
 }
 
-.center {
+.previewlogo {
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-top: 7%;
-}
-.logo {
   z-index: 2;
+  height: 5rem;
 }
 
 .ph {
@@ -62,4 +72,41 @@ h4 {
   border-radius: 30px;
   opacity: 0.7;
   background: linear-gradient(to top, #000, #000);
+}
+
+.centeravatarpost {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 22%;
+  height: 70%;
+}
+.titleopen {
+  margin-top: 5%;
+  color: #000;
+  text-align: left;
+  font-size: 200%;
+}
+
+.groupdate {
+  margin-top: 5%;
+  color: rgb(150, 150, 150);
+  text-align: left;
+  margin-left: 5%;
+  font-size: 100%;
+}
+
+:root {
+  --background_page: #ffffff;
+}
+
+.posttext {
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 120%;
+}
+
+.imagepost {
+  margin-top: 0%;
+  width: 100%;
+  height: auto;
 }
