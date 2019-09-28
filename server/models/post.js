@@ -10,6 +10,6 @@ const PostSchema = new Schema({
   likes: Array,
   viewed: Number,
   buy: Boolean,
-  html: String
+  content: String
 });
 module.exports = mongoose.model("Post", PostSchema);

@@ -43,7 +43,7 @@ router.post("/postAdd", upload.single("postImage"), (req, res) => {
     likes: req.body.likes,
     viewed: req.body.viewed,
     buy: req.body.buy,
-    html: req.body.html
+    content: req.body.content
   });
   post
     .save()
@@ -82,7 +82,7 @@ router.post("/updatedPostLikes/:postId/:userId", (req, res, next) => {
 });
 router.post("/updatedPostViews/:postId", (req, res, next) => {
   const id = req.params.postId;
-  Item.findOneAndUpdate(
+  Post.findOneAndUpdate(
     { _id: id },
     {
       viewed: req.body.viewed + 1
@@ -99,7 +99,7 @@ router.post("/updatedPostViews/:postId", (req, res, next) => {
 });
 router.delete("/delete/:postId", (req, res, next) => {
   const id = req.params.postId;
-  Item.deleteOne({
+  Post.deleteOne({
     _id: id
   }).then(docs => {
     res.send(docs);

@@ -1,4 +1,5 @@
 import React from "react";
+import { Group, Select } from "@vkontakte/vkui";
 import { Editor } from "@tinymce/tinymce-react";
 import axios from "axios";
 import "./ContentEditor.css";
@@ -12,7 +13,7 @@ class ContentEditor extends React.Component {
       title: "",
       teaser: "",
       buy: "",
-      selectedFile: null
+      selectedFile: ""
     };
     this.fileInput = React.createRef();
     this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -36,6 +37,9 @@ class ContentEditor extends React.Component {
       this.state.selectedFile.name
     );
     formData.append("title", this.state.title);
+    formData.append("teaser", this.state.teaser);
+    formData.append("buy", this.state.buy);
+    formData.append("content", this.state.content);
     axios.post("http://localhost:5000/postAdd", formData, {
       onUploadProgress: progressEvent => {
         console.log(progressEvent.loaded / progressEvent.total);
@@ -50,42 +54,98 @@ class ContentEditor extends React.Component {
     this.setState({ buy: event.target.value });
     console.log(this.state.buy);
   };
-  sendDataToDB(p) {
-    // do something with {p}
-  }
 
   async handleEditorChange(e) {
     let content = await this.setState({ content: [e.target.getContent()] });
     console.log("Content was updated:", e.target.getContent());
-    console.log(this.state.content);
-    this.sendDataToDB(content);
     return content;
   }
 
   render() {
     return (
-      <div>
+      <Group>
         <form
           encType="multipart/form-data"
-          onSubmit={this.handleSubmit}
+          onSubmit={this.uploadHandler}
           id="postForm"
         >
           <input
+            style={{
+              boxShadow: "0 0 5px #999999",
+              fontSize: "1.75rem",
+              color: "black",
+              width: "97%",
+              height: "2rem",
+              marginLeft: "1.25%",
+              marginTop: "1%",
+              marginBottom: "1%",
+              boxSizing: "border-box",
+              padding: "5px",
+              border: "1px solid lightgrey",
+              borderRadius: "10px"
+            }}
             type="text"
             placeholder="Введите заголовок"
             onChange={this.changeTitle}
           />
           <textarea
+            style={{
+              boxShadow: "0 0 5px #999999",
+              resize: "none",
+              height: "30vh",
+              outline: "none",
+              border: "1px solid #999",
+              fontSize: "1rem",
+              color: "black",
+              width: "97%",
+              marginLeft: "1.25%",
+              marginTop: "1%",
+              marginBottom: "1%",
+              boxSizing: "border-box",
+              padding: "5px",
+              border: "1px solid lightgrey",
+              borderRadius: "10px"
+            }}
             type="text"
             placeholder="Введите демо текст статьи"
             onChange={this.changeTeaser}
           />
-          <select value={true} onChange={this.changeBuy}>
-            <option disabled>Выберите героя</option>
+          <Select
+            style={{
+              margin: "5px 5px 5px 5px"
+            }}
+            onChange={this.changeBuy}
+            placeholder="Выберите пол"
+          >
             <option value={true}>Платный</option>
             <option value={false}>Бесплатный</option>
-          </select>
-          <input type="file" onChange={this.fileChangedHandler} />>
+          </Select>
+          <input
+            className="inputfile"
+            style={{
+              width: "100%"
+            }}
+            id="file"
+            type="file"
+            name="file"
+            style={{
+              display: "flex",
+              width: "100%"
+            }}
+            onChange={this.fileChangedHandler}
+          />
+          <label
+            style={{
+              boxShadow: "0 0 5px #999999",
+              textAlign: "center",
+              margin: "10px",
+              padding: "10px"
+            }}
+            for="file"
+          >
+            Выберите фотографию
+          </label>
+
           <Editor
             initialValue="<p>This is the initial content of the editor</p>"
             init={{
@@ -103,7 +163,7 @@ class ContentEditor extends React.Component {
             }}
             onChange={this.handleEditorChange}
           />
-          <button onClick={this.uploadHandler}>Загрузить пост</button>
+          <button>Загрузить пост</button>
         </form>
         {this.state.content ? (
           <div
@@ -111,7 +171,7 @@ class ContentEditor extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.state.content }}
           ></div>
         ) : null}
-      </div>
+      </Group>
     );
   }
 }

@@ -19,6 +19,8 @@ class Feed extends React.Component {
       <Panel id={this.props.id}>
         <PanelHeader>Лента</PanelHeader>
         <Div
+          onClick={this.props.go}
+          data-story="fullPost"
           style={{
             height: "auto",
             marginLeft: "2%",

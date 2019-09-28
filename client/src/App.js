@@ -12,6 +12,7 @@ import Favorites from "./panels/Favorites.js";
 import Discover from "./panels/Discover.js";
 import More from "./panels/More.js";
 import PostBuy from "./panels/PostBuy.js";
+import FullPost from "./panels/FullPost.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -106,8 +107,11 @@ class App extends React.Component {
           </Tabbar>
         }
       >
+        <View id="fullPost" activePanel="fullPost">
+          <FullPost go={this.onStoryChange} id="fullPost"></FullPost>
+        </View>
         <View id="feed" activePanel="feed">
-          <Feed id="feed" />
+          <Feed id="feed" go={this.onStoryChange} />
         </View>
         <View id="discover" activePanel="discover">
           <Discover id="discover" />
