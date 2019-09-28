@@ -1,6 +1,7 @@
 const graphql = require("graphql");
 const _ = require("lodash");
 const Post = require("../models/post");
+const Group = require("../models/group");
 const {
   GraphQLObjectType,
   GraphQLInt,
@@ -20,9 +21,17 @@ const PostType = new GraphQLObjectType({
     teaser: { type: GraphQLString },
     title: { type: GraphQLString },
     text: { type: GraphQLString },
-    likes: { type: GraphQLInt },
     viewed: { type: GraphQLInt },
-    buy: { type: GraphQLBoolean }
+    buy: { type: GraphQLBoolean },
+    content: { type: GraphQLString }
+  })
+});
+const GroupType = new GraphQLObjectType({
+  name: "Group",
+  fields: () => ({
+    groupId: { type: GraphQLString },
+    authorId: { type: GraphQLString },
+    name: { type: GraphQLString }
   })
 });
 const CourseType = new GraphQLObjectType({
@@ -83,16 +92,32 @@ const RootQuery = new GraphQLObjectType({
     },
     posts: {
       type: new GraphQLList(PostType),
+      resolve(parent, args) {
+        return Post.find();
+      }
+    },
+    group: {
+      type: GroupType,
       args: {
-        groupId: { type: GraphQLID },
-        authorId: { type: GraphQLID }
+        _id: {
+          type: GraphQLID
+        },
+        name: { type: GraphQLString },
+        authorId: { type: GraphQLString },
+        groupId: { type: GraphQLString }
       },
       resolve(parent, args) {
+        if (args._id) {
+          return Group.find({ _id: args._id });
+        }
         if (args.groupId) {
-          return Post.find({ groupId: args.groupId });
+          return Group.find({ groupId: args.groupId });
         }
         if (args.authorId) {
-          return Post.find({ authorId: args.authorId });
+          return Group.find({ authorId: args.authorId });
+        }
+        if (args.name) {
+          return Group.find({ name: args.name });
         }
       }
     }
@@ -101,46 +126,26 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    addPost: {
-      type: PostType,
+    addGroup: {
+      type: GroupType,
       args: {
         groupId: {
           type: GraphQLString
         },
-        authroId: {
+        authorId: {
           type: GraphQLString
         },
-        title: {
-          type: new GraphQLNonNull(GraphQLString)
-        },
-        teaser: {
-          type: new GraphQLNonNull(GraphQLString)
-        },
-        text: {
-          type: new GraphQLNonNull(GraphQLString)
-        },
-        image: {
-          type: new GraphQLNonNull(GraphQLString)
-        },
-        viewed: {
-          type: new GraphQLNonNull(GraphQLInt)
-        },
-        likes: {
-          type: new GraphQLNonNull(GraphQLInt)
+        name: {
+          type: GraphQLString
         }
       },
       resolve(parent, args) {
-        let post = new Post({
+        let group = new Group({
           groupId: args.groupId,
           authorId: args.authorId,
-          title: args.title,
-          teaser: args.title,
-          text: args.text,
-          image: args.image,
-          viewed: args.viewed,
-          likes: args.liked
+          name: args.name
         });
-        return post.save();
+        return group.save();
       }
     }
   }

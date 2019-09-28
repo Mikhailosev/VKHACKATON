@@ -149,7 +149,12 @@ class ContentEditor extends React.Component {
             />
           </div>
           <Button
-            style={{ width: "80%", marginLeft: "10%" }}
+            style={{
+              width: "80%",
+              marginBottom: "75px",
+              marginTop: "25px",
+              marginLeft: "10%"
+            }}
             size="xl"
             level="secondary"
           >

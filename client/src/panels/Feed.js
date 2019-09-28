@@ -2,6 +2,9 @@ import React from "react";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
 import { Button, Div, View, Group } from "@vkontakte/vkui";
+import { graphql } from "react-apollo";
+import { getPostsQuery } from "../queries/queries";
+import { withRouter } from "react-router-dom";
 import logo from "../img/logo.png";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
@@ -9,40 +12,57 @@ import "./Feed.css";
 class Feed extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      activePanel: "PostBuy"
-    };
+    this.state = {};
   }
-
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
-    return (
-      <Panel id={this.props.id}>
-        <PanelHeader>Ваша платная лента</PanelHeader>
-        <Div
-          onClick={this.props.go}
-          data-story="fullPost"
-          className="postplace"
-        >
-          <img className="previewlogo" src={logo} />
-          <h1>Обучающая статья по редактору Adobe Photoshop для чайников</h1>
-          <h2>Alexeev Inc.</h2>
+    let posts = [];
+    if (this.props.data.posts) {
+      console.log(this.props);
+
+      posts = this.props.data.posts.map(res => (
+        <Div className="postplace">
+          <img
+            className="previewlogo"
+            src={`http://localhost:5000/` + res.image}
+          />
+          <h1>{res.title}</h1>
+          <h2>{res.teaser}</h2>
           <h3>1000 просмотров</h3>
           <h4>Время чтения: 30 минут</h4>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{ __html: res.content }}
+          ></div>
+
           <img className="gray" />
-          <img className="photo ph" src={photo} />
+          <img
+            className="photo ph"
+            src={`http://localhost:5000/` + res.image}
+          />
         </Div>
-        <Div onClick={this.props.go} data-story="postbuy" className="postplace">
-          <img className="previewlogo" src={logo} />
-          <h1>Как включить ПК</h1>
-          <h2>Alexeev Inc.</h2>
-          <h3>999999 просмотров</h3>
-          <h4>Время чтения: 0 минут</h4>
-          <img className="gray" />
-          <img className="photo ph" src={photo} />
-        </Div>
-      </Panel>
+      ));
+    }
+    console.log(this.props);
+    return (
+      <div>
+        <div
+          style={{
+            display: "block",
+            width: "100%",
+            top: "0",
+            left: "0",
+            height: "50px",
+            backgroundColor: "#4680c2",
+            opacity: "1"
+          }}
+        ></div>
+        {posts}
+      </div>
     );
   }
 }
 
-export default Feed;
+export default graphql(getPostsQuery)(Feed);
