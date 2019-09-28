@@ -42,7 +42,8 @@ router.post("/postAdd", upload.single("postImage"), (req, res) => {
     image: req.file.path,
     likes: req.body.likes,
     viewed: req.body.viewed,
-    buy: req.body.buy
+    buy: req.body.buy,
+    html: req.body.html
   });
   post
     .save()
