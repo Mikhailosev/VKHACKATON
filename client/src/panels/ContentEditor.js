@@ -92,10 +92,8 @@ class ContentEditor extends React.Component {
             style={{
               boxShadow: "0 0 5px #999999",
               resize: "none",
-              fontSize: "1.5rem",
               height: "30vh",
               outline: "none",
-              border: "1px solid #999",
               fontSize: "1rem",
               color: "black",
               width: "97%",
