@@ -9,6 +9,7 @@ const PostSchema = new Schema({
   text: String,
   likes: Array,
   viewed: Number,
-  buy: Boolean
+  buy: Boolean,
+  content: String
 });
 module.exports = mongoose.model("Post", PostSchema);

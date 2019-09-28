@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
 mongoose
   .connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@marketplace-bnghg.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@marketplace-bnghg.mongodb.net/hackaton?retryWrites=true&w=majority`
   )
   .then(() => {
     app.listen(port);

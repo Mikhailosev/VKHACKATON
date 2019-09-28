@@ -1,20 +1,48 @@
-import React from 'react';
-import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
+import React from "react";
+import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
+import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
+import { Button, Div, View, Group } from "@vkontakte/vkui";
+import logo from "../img/logo.png";
+import photo from "../img/photo.jpg";
+import "./Feed.css";
 
 class Feed extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      activePanel: "PostBuy"
+    };
+  }
 
-    render() {
-        return(
-            <Panel id={this.props.id}>
-                <PanelHeader>Лента</PanelHeader>
-            </Panel>
-        )
-    }
-
+  render() {
+    return (
+      <Panel id={this.props.id}>
+        <PanelHeader>Ваша платная лента</PanelHeader>
+        <Div
+          onClick={this.props.go}
+          data-story="fullPost"
+          className="postplace"
+        >
+          <img className="previewlogo" src={logo} />
+          <h1>Обучающая статья по редактору Adobe Photoshop для чайников</h1>
+          <h2>Alexeev Inc.</h2>
+          <h3>1000 просмотров</h3>
+          <h4>Время чтения: 30 минут</h4>
+          <img className="gray" />
+          <img className="photo ph" src={photo} />
+        </Div>
+        <Div onClick={this.props.go} data-story="postbuy" className="postplace">
+          <img className="previewlogo" src={logo} />
+          <h1>Как включить ПК</h1>
+          <h2>Alexeev Inc.</h2>
+          <h3>999999 просмотров</h3>
+          <h4>Время чтения: 0 минут</h4>
+          <img className="gray" />
+          <img className="photo ph" src={photo} />
+        </Div>
+      </Panel>
+    );
+  }
 }
 
 export default Feed;

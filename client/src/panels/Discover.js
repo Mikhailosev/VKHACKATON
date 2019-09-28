@@ -1,35 +1,19 @@
-import React from 'react';
-import { Panel, PanelHeader, Search } from '@vkontakte/vkui';
+import React from "react";
+import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
+import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
 
 class Discover extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+  }
 
-        this.state = {
-            searchResults: null
-        }
-
-        this.handleSearchChange=this.handleSearchChange.bind(this);
-    }
-
-    handleSearchChange(s, e) {
-        // send request to db; s contain search string
-        this.setState({
-            searchResults: "response from backend on search string " + '"' + s + '"'
-        })
-    }
-
-    render() {
-        return(
-            <Panel id={this.props.id}>
-                <PanelHeader>
-                    <Search theme="header" onChange={this.handleSearchChange} />
-                </PanelHeader>
-                {this.state.searchResults}
-            </Panel>
-        )
-    }
-
+  render() {
+    return (
+      <Panel id={this.props.id}>
+        <PanelHeader>Поиск</PanelHeader>
+      </Panel>
+    );
+  }
 }
 
 export default Discover;
