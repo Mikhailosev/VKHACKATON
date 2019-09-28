@@ -15,6 +15,6 @@ class Feed extends React.Component {
         )
     }
 
-};
+}
 
 export default Feed;
