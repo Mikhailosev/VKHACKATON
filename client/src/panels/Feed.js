@@ -16,6 +16,8 @@ class Feed extends React.Component {
       <Panel id={this.props.id}>
         <PanelHeader>Лента</PanelHeader>
         <Div
+          onClick={this.props.go}
+          data-to="PostBuy"
           style={{
             height: "auto",
             marginLeft: "2%",
