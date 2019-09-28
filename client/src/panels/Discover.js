@@ -1,6 +1,5 @@
 import React from "react";
-import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
-import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
+import { Panel, PanelHeader, Search } from "@vkontakte/vkui";
 
 class Discover extends React.Component {
   constructor(props) {
@@ -10,7 +9,10 @@ class Discover extends React.Component {
   render() {
     return (
       <Panel id={this.props.id}>
-        <PanelHeader>Поиск</PanelHeader>
+        <PanelHeader>
+          <Search theme="header" />
+
+        </PanelHeader>
       </Panel>
     );
   }
