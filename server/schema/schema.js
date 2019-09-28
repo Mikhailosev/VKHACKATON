@@ -15,6 +15,7 @@ const {
 const PostType = new GraphQLObjectType({
   name: "Post",
   fields: () => ({
+    id: { type: GraphQLID },
     groupId: { type: GraphQLString },
     authorId: { type: GraphQLString },
     image: { type: GraphQLString },
@@ -84,10 +85,10 @@ const RootQuery = new GraphQLObjectType({
     post: {
       type: PostType,
       args: {
-        _id: { type: GraphQLID }
+        id: { type: GraphQLID }
       },
       resolve(parent, args) {
-        return Post.findById(args._id);
+        return Post.findById(args.id);
       }
     },
     posts: {
