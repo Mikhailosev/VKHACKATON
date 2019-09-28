@@ -76,11 +76,20 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.state.fetchedUser ? <Navigation></Navigation> : null}
+        {this.state.fetchedUser ? (
+          <Navigation style={{ zIndex: "1000" }}></Navigation>
+        ) : null}
 
         <Route
           path="/favorites"
           render={props => <Favorites go={this.onStoryChange} id="favorites" />}
+        />
+        <Route
+          path="/post/:postId"
+          exact
+          render={props => {
+            return <FullPost {...props} />;
+          }}
         />
         <Route
           path="/discover"

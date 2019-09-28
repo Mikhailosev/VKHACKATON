@@ -4,7 +4,7 @@ import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader
 import { Button, Div, View, Group } from "@vkontakte/vkui";
 import { graphql } from "react-apollo";
 import { getPostsQuery } from "../queries/queries";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
@@ -23,27 +23,37 @@ class Feed extends React.Component {
       console.log(this.props);
 
       posts = this.props.data.posts.map(res => (
-        <Div className="postplace">
-          <img
-            className="previewlogo"
-            src={`http://localhost:5000/` + res.image}
-          />
-          <h1>{res.title}</h1>
-          <h2>{res.teaser}</h2>
-          <h3>1000 просмотров</h3>
-          <h4>Время чтения: 30 минут</h4>
-          <div
+        <Link
+          to={`/post/` + res.id}
+          key={res.id}
+          style={{
+            textDecoration: "none",
+            marginLeft: "5%",
+            marginRight: "5%"
+          }}
+        >
+          <Div className="postplace">
+            <img
+              className="previewlogo"
+              src={`https://arcane-savannah-41356.herokuapp.com/` + res.image}
+            />
+            <h1>{res.title}</h1>
+            <h2>{res.teaser}</h2>
+            <h4>{res.timetoread}</h4>
+            {/* <div
             className="content"
             dangerouslySetInnerHTML={{ __html: res.content }}
-          ></div>
+          ></div> */}
 
-          <img className="gray" />
-          <img
-            className="photo ph"
-            src={`http://localhost:5000/` + res.image}
-          />
-        </Div>
+            <img className="gray" />
+            <img
+              className="photo ph"
+              src={`https://arcane-savannah-41356.herokuapp.com/` + res.image}
+            />
+          </Div>
+        </Link>
       ));
+      console.log(posts);
     }
     console.log(this.props);
     return (

@@ -7,42 +7,46 @@ import HeaderButton from "@vkontakte/vkui/dist/components/HeaderButton/HeaderBut
 import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import Icon24Back from "@vkontakte/icons/dist/24/back";
 import logo from "../img/logo.png";
+import { graphql } from "react-apollo";
+import { getPostQuery } from "../queries/queries";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
 
-const osName = platform();
+class FullPost extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  componentDidMount() {
+    console.log(this.props);
+  }
+  render() {
+    console.log(this.props);
+    return (
+      <div>
+        <div
+          style={{
+            display: "block",
+            width: "100%",
+            top: "0",
+            left: "0",
+            height: "50px",
+            backgroundColor: "#4680c2",
+            opacity: "1"
+          }}
+        ></div>
+      </div>
+    );
+  }
+}
 
-const FullPost = props => (
-  <Panel id={props.id}>
-    <PanelHeader
-      left={
-        <HeaderButton onClick={props.go} data-story="feed">
-          {osName === IOS ? <Icon28ChevronBack /> : <Icon24Back />}
-        </HeaderButton>
+export default graphql(getPostQuery, {
+  options: props => {
+    console.log(props);
+    return {
+      variables: {
+        id: props.match.params.postId
       }
-    >
-      <img className="centeravatarpost" src={logo} alt="Logo" />
-    </PanelHeader>
-    <div>
-      <h1 className="titleopen">Как включить ПК</h1>
-      <h2 className="groupdate">Alexeev Inc. • 32 дек в 24:01</h2>
-      <p className="posttext">
-        Для начала купите книгу "Персональный компьютер для чайников", затем
-        прочитайте её и выбросьте свой ПК на мусорку.
-      </p>
-      <img className="imagepost" src={photo} alt="Image" />
-      <p className="posttext">
-        Кто прочитал тот гей! Падашел аташол понял принял!
-      </p>
-      <img className="imagepost" src={photo} alt="Image" />
-      <p className="posttext">Вот и сказочке канец... </p>
-    </div>
-  </Panel>
-);
-
-FullPost.propTypes = {
-  id: PropTypes.string.isRequired,
-  go: PropTypes.func.isRequired
-};
-
-export default FullPost;
+    };
+  }
+})(FullPost);
