@@ -106,7 +106,7 @@ class ContentEditor extends React.Component {
               borderRadius: "10px"
             }}
             type="text"
-            placeholder="Введите демо текст статьи"
+            placeholder="Введите текст для предпросмотра"
             onChange={this.changeTeaser}
           />
           <Select
@@ -139,9 +139,10 @@ class ContentEditor extends React.Component {
                   "insertdatetime media table paste code help wordcount"
                 ],
                 toolbar:
-                  "undo redo | formatselect | image | bold italic backcolor | \
+                  " image | bold italic backcolor | \
                             alignleft aligncenter alignright alignjustify | \
-                            bullist numlist outdent indent | removeformat | help"
+                            bullist numlist | removeformat ",
+                content_style: 'img {width: 100%; height: auto;}'
               }}
               onChange={this.handleEditorChange}
             />
