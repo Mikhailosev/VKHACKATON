@@ -49,7 +49,7 @@ class More extends React.Component {
           }}>
               Редактор
           </h1>
-        <ContentEditor></ContentEditor>
+        <ContentEditor />
       </div>
     );
   }
