@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {platform, IOS, Group} from "@vkontakte/vkui";
+import {platform, IOS, Group, PanelHeaderBack} from "@vkontakte/vkui";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
 import HeaderButton from "@vkontakte/vkui/dist/components/HeaderButton/HeaderButton";
@@ -49,7 +49,9 @@ class PostBuy extends React.Component {
                         backgroundColor: "#4680c2",
                         opacity: "1"
                     }}
-                ></div>
+                >
+                    <PanelHeaderBack onClick={() => this.props.history.goBack()}/>
+                </div>
 
                 <h1 style={{
                     textAlign: "center",
