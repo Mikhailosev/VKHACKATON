@@ -193,12 +193,12 @@ class ContentEditor extends React.Component {
             Отправить пост{" "}
           </Button>{" "}
         </form>
-        {this.state.content ? (
-          <div
-            className="content"
-            dangerouslySetInnerHTML={{ __html: this.state.content }}
-          ></div>
-        ) : null}
+        {/*{this.state.content ? (*/}
+        {/*  <div*/}
+        {/*    className="content"*/}
+        {/*    dangerouslySetInnerHTML={{ __html: this.state.content }}*/}
+        {/*  ></div>*/}
+        {/*) : null}*/}
       </Group>
     );
   }
