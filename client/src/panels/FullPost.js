@@ -12,6 +12,10 @@ import {getPostFullQuery, getPostQuery} from "../queries/queries";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
+import Button from "@vkontakte/vkui/dist/components/Button/Button";
+import Icon24Newsfeed from '@vkontakte/icons/dist/24/newsfeed';
+import Icon16Play from '@vkontakte/icons/dist/16/play';
+import Icon24Live from '@vkontakte/icons/dist/24/live';
 
 class FullPost extends React.Component {
   constructor(props) {
@@ -87,6 +91,24 @@ class FullPost extends React.Component {
               {buy ? "Неоплаченный пост" : "Оплаченный пост"}
           </Div>
               </Group>
+          <Div style={{display: 'flex', marginBottom: '50px'}}>
+              <Button
+                  size="l"
+                  stretched before={<Icon24Newsfeed style={{color: "white", height: "16px"}}/>}
+                  style={{ marginRight: 8 }}
+                  onClick={() => this.props.shareToWallHandler()}
+                  >
+                  На стену
+              </Button>
+              <Button
+                  size="l"
+                  stretched before={<Icon24Live style={{color: "white"}}/>}
+                  onClick={() => this.props.addToStoryHandler()}
+              >
+                  В историю
+              </Button>
+          </Div>
+
       </div>
     );
   }
