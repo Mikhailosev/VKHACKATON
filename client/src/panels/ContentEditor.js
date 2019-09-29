@@ -46,6 +46,9 @@ class ContentEditor extends React.Component {
       {
         onUploadProgress: progressEvent => {
           console.log(progressEvent.loaded / progressEvent.total);
+        },
+        headers: {
+          "Access-Control-Allow-Origin": "*"
         }
       }
     );
