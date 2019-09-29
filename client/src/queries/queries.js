@@ -40,7 +40,7 @@ export const addGroupMutation = gql`
   mutation($name: String!, $groupId: String!, $authorId: String!) {
     addBook(name: $name, genre: $genre, authorId: $authorId) {
       name
-      id
+      idv
       groupId
       authorId
     }
