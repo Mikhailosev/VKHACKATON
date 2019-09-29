@@ -191,7 +191,7 @@ class App extends React.Component {
       v: "5.101"
     })
       .then(response => console.log(response))
-      .catch(() => console.log("Can't post"));
+      .catch(() => alert("Что-то полшо не так, попробуйте еще раз :-("));
   }
 
   addToStory() {
@@ -250,9 +250,10 @@ class App extends React.Component {
         })
           .then(response => response.json())
           .then(response => console.log(response.response.story))
-          .catch(() => console.log("Can't upload story"));
+          .then(() => alert("История опубликована!"))
+          .catch(() => alert("Что-то пошло не так, попробуйте еще раз :-("));
       })
-      .catch(() => console.log("Can't get upload url"));
+      .catch(() => alert("Что-то пошло не так, попробуйте еще раз :-("));
     this.toggleModal();
   }
 
@@ -286,14 +287,20 @@ class App extends React.Component {
           path="/post/:postId"
           exact
           render={props => {
-            return <FullPost {...props} />;
+            return <FullPost {...props}
+                             shareToWallHandler={() => this.postToWall()}
+                             addToStoryHandler={() => this.addToStory()}
+            />;
           }}
         />
         <Route
           path="/postBuy/:postId"
           exact
           render={props => {
-            return <PostBuy {...props} />;
+            return <PostBuy {...props}
+                            shareToWallHandler={() => this.postToWall()}
+                            addToStoryHandler={() => this.addToStory()}
+            />;
           }}
         />
         <Route

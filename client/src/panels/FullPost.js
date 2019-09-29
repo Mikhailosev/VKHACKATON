@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {platform, IOS, Group} from "@vkontakte/vkui";
+import {platform, IOS, Group, PanelHeaderBack} from "@vkontakte/vkui";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
 import HeaderButton from "@vkontakte/vkui/dist/components/HeaderButton/HeaderButton";
@@ -12,6 +12,10 @@ import {getPostFullQuery, getPostQuery} from "../queries/queries";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
+import Button from "@vkontakte/vkui/dist/components/Button/Button";
+import Icon24Newsfeed from '@vkontakte/icons/dist/24/newsfeed';
+import Icon16Play from '@vkontakte/icons/dist/16/play';
+import Icon24Live from '@vkontakte/icons/dist/24/live';
 
 class FullPost extends React.Component {
   constructor(props) {
@@ -49,7 +53,12 @@ class FullPost extends React.Component {
             backgroundColor: "#4680c2",
             opacity: "1"
           }}
-        ></div>
+        >
+            <PanelHeaderBack
+                onClick={() => this.props.history.goBack()}
+                style={{color: "white", marginLeft: "3px"}}
+            />
+        </div>
 
           <h1 style={{
               textAlign: "center",
@@ -82,6 +91,24 @@ class FullPost extends React.Component {
               {buy ? "Неоплаченный пост" : "Оплаченный пост"}
           </Div>
               </Group>
+          <Div style={{display: 'flex', marginBottom: '50px'}}>
+              <Button
+                  size="l"
+                  stretched before={<Icon24Newsfeed style={{color: "white", height: "16px"}}/>}
+                  style={{ marginRight: 8 }}
+                  onClick={() => this.props.shareToWallHandler()}
+                  >
+                  На стену
+              </Button>
+              <Button
+                  size="l"
+                  stretched before={<Icon24Live style={{color: "white"}}/>}
+                  onClick={() => this.props.addToStoryHandler()}
+              >
+                  В историю
+              </Button>
+          </Div>
+
       </div>
     );
   }
