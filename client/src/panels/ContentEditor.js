@@ -56,7 +56,7 @@ class ContentEditor extends React.Component {
     this.setState({ teaser: event.target.value });
     console.log(this.state.teaser);
   };
-  changeTeaser = event => {
+  changeTimeToRead = event => {
     this.setState({ timetoread: event.target.value });
     console.log(this.state.timetoread);
   };
