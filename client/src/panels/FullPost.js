@@ -72,7 +72,8 @@ class FullPost extends React.Component {
         <h1
           style={{
             textAlign: "center",
-            color: "black"
+            color: "black",
+              marginTop: "60px"
           }}
         >
           {title}

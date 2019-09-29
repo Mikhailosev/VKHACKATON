@@ -64,7 +64,8 @@ class PostBuy extends React.Component {
 
                 <h1 style={{
                     textAlign: "center",
-                    color: "black"
+                    color: "black",
+                    marginTop: "60px"
                 }}>
                     {title}
                 </h1>
@@ -115,7 +116,7 @@ class PostBuy extends React.Component {
                     before={<Icon24MoneyTransfer style={{ color: "white" }} />}
                     level="commerce"
                     onClick={() => {
-                        this.props.paymentHandler();
+                        this.props.paymentHandler(154522988);
                     }}
                 >Купить пост</Button></Div>
             </div>
