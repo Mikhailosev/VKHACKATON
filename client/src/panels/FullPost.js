@@ -14,7 +14,6 @@ import "./Feed.css";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import Icon24Newsfeed from "@vkontakte/icons/dist/24/newsfeed";
-import Icon16Play from "@vkontakte/icons/dist/16/play";
 import Icon24Live from "@vkontakte/icons/dist/24/live";
 
 class FullPost extends React.Component {
@@ -44,15 +43,25 @@ class FullPost extends React.Component {
     return (
       <div>
         <div
-          style={{
-            display: "block",
-            width: "100%",
-            top: "0",
-            left: "0",
-            height: "50px",
-            backgroundColor: "#4680c2",
-            opacity: "1"
-          }}
+            style={{
+                position: "fixed",
+                display: "block",
+                top: "0",
+                left: "0",
+                height: "50px",
+                backgroundColor: "#4680c2",
+                width: "100%",
+                zIndex: "100"
+            }}
+          // style={{
+          //   display: "block",
+          //   width: "100%",
+          //   top: "0",
+          //   left: "0",
+          //   height: "50px",
+          //   backgroundColor: "#4680c2",
+          //   opacity: "1"
+          // }}
         >
           <PanelHeaderBack
             onClick={() => this.props.history.goBack()}
@@ -107,7 +116,9 @@ class FullPost extends React.Component {
             size="l"
             stretched
             before={<Icon24Live style={{ color: "white" }} />}
-            onClick={() => this.props.addToStoryHandler()}
+            onClick={() => {
+                this.props.addToStoryHandler(image, title);
+            }}
           >
             В историю
           </Button>

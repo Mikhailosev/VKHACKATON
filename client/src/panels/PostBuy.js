@@ -12,6 +12,11 @@ import { getPostFullQuery } from "../queries/queries";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
+import Button from "@vkontakte/vkui/dist/components/Button/Button";
+import Icon24Newsfeed from "@vkontakte/icons/dist/24/newsfeed";
+import Icon24Live from "@vkontakte/icons/dist/24/live";
+import Icon24MoneyTransfer from '@vkontakte/icons/dist/24/money_transfer';
+
 
 class PostBuy extends React.Component {
     constructor(props) {
@@ -41,13 +46,14 @@ class PostBuy extends React.Component {
             <div>
                 <div
                     style={{
-                        display: "block",
-                        width: "100%",
+                        position: "fixed",
+                        display: "flex",
                         top: "0",
                         left: "0",
                         height: "50px",
                         backgroundColor: "#4680c2",
-                        opacity: "1"
+                        width: "100%",
+                        zIndex: "100"
                     }}
                 >
                     <PanelHeaderBack
@@ -77,6 +83,41 @@ class PostBuy extends React.Component {
                         {buy ? "Неоплаченный пост" : "Оплаченный пост"}
                     </Div>
                 </Group>
+                <Div style={{ display: "flex" }}>
+                <Button
+                    size="l"
+                    stretched
+                    before={
+                        <Icon24Newsfeed style={{ color: "white", height: "16px" }} />
+                    }
+                    style={{ marginRight: 8 }}
+                    onClick={() => {
+                        this.props.shareToWallHandler(teaser);
+                    }}
+                >
+                    На стену
+                </Button>
+                <Button
+                    size="l"
+                    stretched
+                    before={<Icon24Live style={{ color: "white" }} />}
+                    onClick={() => {
+                        this.props.addToStoryHandler(image, title);
+                    }}
+                >
+                    В историю
+                </Button>
+                </Div>
+                <Div style={{ display: "flex", marginBottom: "50px" }}>
+                <Button
+                    size="l"
+                    stretched
+                    before={<Icon24MoneyTransfer style={{ color: "white" }} />}
+                    level="commerce"
+                    onClick={() => {
+                        this.props.paymentHandler();
+                    }}
+                >Купить пост</Button></Div>
             </div>
         );
     }
