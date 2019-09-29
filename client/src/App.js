@@ -58,6 +58,7 @@ class App extends React.Component {
     };
     this.handlePayButtonClick = this.handlePayButtonClick.bind(this);
     this.postToWall = this.postToWall.bind(this);
+    this.addToStory = this.addToStory.bind(this);
   }
 
   componentDidMount() {
@@ -187,19 +188,21 @@ class App extends React.Component {
     );
   }
 
-  postToWall(message) {
+  postToWall(message, link) {
      const token = this.state.token;
+     const fullLink = "https://vk.com/app" + this.state.appId + link;
     VKConnect.send("VKWebAppShowWallPostBox", {
         access_token: token,
-      message: message,
+      message: message + "\n" + fullLink,
       v: "5.101"
     })
       .then(response => console.log(response))
       .catch(() => alert("Что-то полшо не так, попробуйте еще раз :-("));
   }
 
-  addToStory(image, text) {
+  addToStory(image, text, link) {
     const VK_API_VERSION = "5.95";
+    const DB_PATH = "https://arcane-savannah-41356.herokuapp.com/";
     const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
     const fields = [
       {
@@ -222,9 +225,12 @@ class App extends React.Component {
       return new File([u8arr], filename, { type: mime });
     };
 
+    const imageURL = DB_PATH + image;
+    const linkURL = "https://vk.com/app" + this.state.appId + link;
+    console.log(imageURL, linkURL)
     let story;
 
-    VKStories.generateStoryFromTemplate(require(image), fields)
+    VKStories.generateStoryFromTemplate(require(imageURL), fields)
       .then(generatedStory => {
         story = generatedStory;
       })
@@ -236,7 +242,7 @@ class App extends React.Component {
         access_token: this.state.token,
         add_to_news: "1",
         link_text: text,
-        link_url: "https://vk.com/app" + this.state.appId,
+        link_url: linkURL,
         v: VK_API_VERSION
       }
     })
@@ -355,7 +361,7 @@ class App extends React.Component {
             />
           )}
         />
-        <Route path="/" exact component={Feed}></Route>
+        {/*<Route path="/" exact component={Feed}></Route>*/}
       </div>
     );
   }

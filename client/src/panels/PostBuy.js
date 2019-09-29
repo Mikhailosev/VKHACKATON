@@ -92,7 +92,7 @@ class PostBuy extends React.Component {
                     }
                     style={{ marginRight: 8 }}
                     onClick={() => {
-                        this.props.shareToWallHandler(teaser);
+                        this.props.shareToWallHandler(title + "\n" + teaser, this.props.location.pathname, this.props.location.pathname);
                     }}
                 >
                     На стену
@@ -102,7 +102,7 @@ class PostBuy extends React.Component {
                     stretched
                     before={<Icon24Live style={{ color: "white" }} />}
                     onClick={() => {
-                        this.props.addToStoryHandler(image, title);
+                        this.props.addToStoryHandler(image, title, this.props.location.pathname);
                     }}
                 >
                     В историю
