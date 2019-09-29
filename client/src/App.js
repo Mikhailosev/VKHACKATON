@@ -267,9 +267,8 @@ class App extends React.Component {
     this.toggleModal();
   }
 
-  handlePayButtonClick() {
-    const receivingUserId = 7150594;
-    console.log("i am here in handler");
+  handlePayButtonClick(recepient) {
+    const receivingUserId = recepient;
     VKConnect.send("VKWebAppOpenPayForm", {
       app_id: this.state.appId,
       action: "pay-to-user",
