@@ -43,7 +43,7 @@ class App extends React.Component {
 
     this.state = {
       appId: 7150594,
-      activeStory: "",
+      activeStory: "feed",
       fetchedUser: null,
       token: null,
       tokenScope: null,
@@ -278,7 +278,6 @@ class App extends React.Component {
         {this.state.fetchedUser ? (
           <Navigation style={{ zIndex: "1000" }}></Navigation>
         ) : null}
-
         <Route
           path="/favorites"
           render={props => <Favorites go={this.onStoryChange} id="favorites" />}
@@ -316,9 +315,7 @@ class App extends React.Component {
         <Route
           path="/more"
           render={props => (
-            <View id="more" activePanel="more">
-              <More id="more" groups={this.state.groups} />
-            </View>
+            <More id="more" {...props} groups={this.state.groups} />
           )}
         />
         <Route
@@ -330,13 +327,12 @@ class App extends React.Component {
           )}
         />
         <Route
-          path="/register/"
+          path="/register"
           render={props => (
-            <View id="group" activePanel="group">
-              <GroupForm groups={this.state.groups} id="group" />
-            </View>
+            <GroupForm {...props} groups={this.state.groups} id="group" />
           )}
         />
+        <Route path="/" exact component={Feed}></Route>
       </div>
     );
   }

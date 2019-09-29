@@ -15,7 +15,7 @@ class More extends React.Component {
         <Group title="Подписки">
           {" "}
           <Link
-            to={`/registerGroup/:userId`}
+            to={`/register`}
             style={{
               textDecoration: "none",
               marginLeft: "5%",
