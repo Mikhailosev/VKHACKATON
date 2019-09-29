@@ -43,7 +43,7 @@ class App extends React.Component {
 
     this.state = {
       appId: 7150594,
-      activeStory: "",
+      activeStory: "feed",
       fetchedUser: null,
       token: null,
       tokenScope: null,
@@ -185,13 +185,13 @@ class App extends React.Component {
     );
   }
 
-  postToWall() {
+  postToWall(message) {
     VKConnect.send("VKWebAppShowWallPostBox", {
-      message: "Hello!",
+      message: message,
       v: "5.101"
     })
       .then(response => console.log(response))
-      .catch(() => console.log("Can't post"));
+      .catch(() => alert("Что-то полшо не так, попробуйте еще раз :-("));
   }
 
   addToStory() {
@@ -250,9 +250,10 @@ class App extends React.Component {
         })
           .then(response => response.json())
           .then(response => console.log(response.response.story))
-          .catch(() => console.log("Can't upload story"));
+          .then(() => alert("История опубликована!"))
+          .catch(() => alert("Что-то пошло не так, попробуйте еще раз :-("));
       })
-      .catch(() => console.log("Can't get upload url"));
+      .catch(() => alert("Что-то пошло не так, попробуйте еще раз :-("));
     this.toggleModal();
   }
 
@@ -278,7 +279,6 @@ class App extends React.Component {
         {this.state.fetchedUser ? (
           <Navigation style={{ zIndex: "1000" }}></Navigation>
         ) : null}
-
         <Route
           path="/favorites"
           render={props => <Favorites go={this.onStoryChange} id="favorites" />}
@@ -287,14 +287,26 @@ class App extends React.Component {
           path="/post/:postId"
           exact
           render={props => {
-            return <FullPost {...props} />;
+            return (
+              <FullPost
+                {...props}
+                shareToWallHandler={this.postToWall}
+                addToStoryHandler={() => this.addToStory()}
+              />
+            );
           }}
         />
         <Route
           path="/postBuy/:postId"
           exact
           render={props => {
-            return <PostBuy {...props} />;
+            return (
+              <PostBuy
+                {...props}
+                shareToWallHandler={this.postToWall}
+                addToStoryHandler={() => this.addToStory()}
+              />
+            );
           }}
         />
         <Route
@@ -316,9 +328,7 @@ class App extends React.Component {
         <Route
           path="/more"
           render={props => (
-            <View id="more" activePanel="more">
-              <More id="more" groups={this.state.groups} />
-            </View>
+            <More id="more" {...props} groups={this.state.groups} />
           )}
         />
         <Route
@@ -330,13 +340,12 @@ class App extends React.Component {
           )}
         />
         <Route
-          path="/register/"
+          path="/register"
           render={props => (
-            <View id="group" activePanel="group">
-              <GroupForm groups={this.state.groups} id="group" />
-            </View>
+            <GroupForm {...props} groups={this.state.groups} id="group" />
           )}
         />
+        <Route path="/" exact component={Feed}></Route>
       </div>
     );
   }

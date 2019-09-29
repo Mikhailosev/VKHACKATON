@@ -111,6 +111,7 @@ h4 {
   height: auto;
 }
 
+<<<<<<< HEAD
 .search {
   margin-top: 0px;
   z-index: 21;
@@ -119,3 +120,8 @@ h4 {
 .qqq {
   z-index: -123;
 }
+=======
+.posts_container:last-child {
+  margin-bottom: 50px;
+}
+>>>>>>> da75514392002e7227906845ec99c927f8240ccb

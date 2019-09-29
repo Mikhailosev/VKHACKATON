@@ -12,7 +12,7 @@ class Navigation extends React.Component {
 
     this.state = {
       appId: 7150594,
-      activeStory: "",
+      activeStory: "feed",
       fetchedUser: null,
       token: null,
       tokenScope: null,
@@ -63,7 +63,7 @@ class Navigation extends React.Component {
             style={{
               textDecoration: "none",
               width: "25%",
-                marginTop: "3px"
+              marginTop: "3px"
             }}
           >
             <TabbarItem
@@ -80,7 +80,7 @@ class Navigation extends React.Component {
             style={{
               textDecoration: "none",
               width: "25%",
-                marginTop: "3px"
+              marginTop: "3px"
             }}
           >
             <TabbarItem
@@ -97,7 +97,7 @@ class Navigation extends React.Component {
             style={{
               textDecoration: "none",
               width: "25%",
-                marginTop: "3px"
+              marginTop: "3px"
             }}
           >
             <TabbarItem

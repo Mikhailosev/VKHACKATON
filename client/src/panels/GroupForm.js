@@ -14,8 +14,8 @@ class GroupForm extends Component {
     };
   }
   displayGroups() {
-    var data = this.props.groups;
-    return data.groups.map(group => {
+    console.log(this.props);
+    return this.props.groups.response.items.map(group => {
       return (
         <option value={group} key={group.id}>
           {group.name} {<Avatar src={group.photo_50}></Avatar>}
@@ -26,6 +26,7 @@ class GroupForm extends Component {
 
   submitForm(e) {
     e.preventDefault();
+    console.log(this.state);
     this.props.addGroupMutation({
       variables: {
         name: this.state.name,
@@ -49,7 +50,7 @@ class GroupForm extends Component {
             }
           >
             <option>Select Group</option>
-            {this.displayAuthors()}
+            {this.displayGroups()}
           </select>
         </div>
         <button>+</button>
@@ -58,6 +59,6 @@ class GroupForm extends Component {
   }
 }
 
-export default compose(graphql(addGroupMutation, { name: "addBookMutation" }))(
+export default compose(graphql(addGroupMutation, { name: "addGroupMutation" }))(
   GroupForm
 );

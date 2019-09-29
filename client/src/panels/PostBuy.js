@@ -50,7 +50,10 @@ class PostBuy extends React.Component {
                         opacity: "1"
                     }}
                 >
-                    <PanelHeaderBack onClick={() => this.props.history.goBack()}/>
+                    <PanelHeaderBack
+                        onClick={() => this.props.history.goBack()}
+                        style={{color: "white", marginLeft: "3px"}}
+                    />
                 </div>
 
                 <h1 style={{

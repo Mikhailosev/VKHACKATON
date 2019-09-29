@@ -22,7 +22,7 @@ class Feed extends React.Component {
     if (this.props.data.posts) {
       console.log(this.props);
 
-      posts = this.props.data.posts.map(res => {
+      posts = this.props.data.posts.reverse().map(res => {
         if (res.buy === true) {
           return (
             <Link
@@ -102,7 +102,7 @@ class Feed extends React.Component {
     }
     console.log(this.props);
     return (
-      <div>
+      <div className="posts_container">
         <div
           style={{
             display: "block",
@@ -111,9 +111,15 @@ class Feed extends React.Component {
             left: "0",
             height: "50px",
             backgroundColor: "#4680c2",
-            opacity: "1"
+            opacity: "1",
+              textAlign: "left",
+              paddingTop: "23px",
+              paddingLeft: "20px",
+              fontSize: "1.3rem",
+              color: "white",
+              fontWeight: "bold"
           }}
-        ></div>
+        >Pay2Win@VK Hackathon</div>
         {posts}
       </div>
     );
