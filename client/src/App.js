@@ -57,6 +57,7 @@ class App extends React.Component {
       this.toggleModal();
     };
     this.handlePayButtonClick = this.handlePayButtonClick.bind(this);
+    this.postToWall = this.postToWall.bind(this);
   }
 
   componentDidMount() {
@@ -73,7 +74,7 @@ class App extends React.Component {
 
     const token = await VKConnect.send("VKWebAppGetAuthToken", {
       app_id: this.state.appId,
-      scope: "groups,stories"
+      scope: "groups,stories,wall"
     }).catch(() => console.log("Cannot get Authorization Token"));
     this.setState({
       token: token.data.access_token,
@@ -187,7 +188,9 @@ class App extends React.Component {
   }
 
   postToWall(message) {
+     const token = this.state.token;
     VKConnect.send("VKWebAppShowWallPostBox", {
+        access_token: token,
       message: message,
       v: "5.101"
     })
