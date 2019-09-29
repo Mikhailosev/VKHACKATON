@@ -56,6 +56,7 @@ class App extends React.Component {
     this.modalBack = () => {
       this.toggleModal();
     };
+    this.handlePayButtonClick = this.handlePayButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -194,7 +195,7 @@ class App extends React.Component {
       .catch(() => alert("Что-то полшо не так, попробуйте еще раз :-("));
   }
 
-  addToStory() {
+  addToStory(image, text) {
     const VK_API_VERSION = "5.95";
     const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
     const fields = [
@@ -220,7 +221,7 @@ class App extends React.Component {
 
     let story;
 
-    VKStories.generateStoryFromTemplate(require("./img/persik.png"), fields)
+    VKStories.generateStoryFromTemplate(require(image), fields)
       .then(generatedStory => {
         story = generatedStory;
       })
@@ -231,7 +232,7 @@ class App extends React.Component {
       params: {
         access_token: this.state.token,
         add_to_news: "1",
-        link_text: "open",
+        link_text: text,
         link_url: "https://vk.com/app" + this.state.appId,
         v: VK_API_VERSION
       }
@@ -291,7 +292,7 @@ class App extends React.Component {
               <FullPost
                 {...props}
                 shareToWallHandler={this.postToWall}
-                addToStoryHandler={() => this.addToStory()}
+                addToStoryHandler={this.addToStory}
               />
             );
           }}
@@ -304,7 +305,8 @@ class App extends React.Component {
               <PostBuy
                 {...props}
                 shareToWallHandler={this.postToWall}
-                addToStoryHandler={() => this.addToStory()}
+                addToStoryHandler={this.addToStory}
+                paymentHandler={this.handlePayButtonClick}
               />
             );
           }}
