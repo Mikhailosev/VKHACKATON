@@ -102,7 +102,7 @@ class Feed extends React.Component {
     }
     console.log(this.props);
     return (
-      <div>
+      <div className="posts_container">
         <div
           style={{
             display: "block",
