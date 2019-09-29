@@ -24,58 +24,16 @@ const PostType = new GraphQLObjectType({
     text: { type: GraphQLString },
     viewed: { type: GraphQLInt },
     buy: { type: GraphQLBoolean },
-    content: { type: GraphQLString }
+    content: { type: GraphQLString },
+    timetoread: { type: GraphQLInt }
   })
 });
 const GroupType = new GraphQLObjectType({
   name: "Group",
   fields: () => ({
+    id: { type: GraphQLString },
     groupId: { type: GraphQLString },
-    authorId: { type: GraphQLString },
-    name: { type: GraphQLString }
-  })
-});
-const CourseType = new GraphQLObjectType({
-  name: "Course",
-  fields: () => ({
-    id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    language: { type: GraphQLString },
-    level: { type: GraphQLString },
-    courses: {
-      type: new GraphQLList(CourseType),
-      resolve(parent, args) {
-        return Course.find();
-      }
-    },
-    categories: {
-      type: new GraphQLList(CategoryType),
-      args: {
-        courseId: { type: GraphQLID }
-      },
-      resolve(parent, args) {
-        return Category.find({ courseId: args.courseId });
-      }
-    },
-    subCategories: {
-      type: new GraphQLList(SubCategoryType),
-      args: {
-        categoryId: { type: GraphQLID }
-      },
-      resolve(parent, args) {
-        return Category.find({ categoryId: args.categoryId });
-      }
-    },
-    word: {
-      type: new GraphQLList(CategoryType),
-      args: {
-        categoryId: { type: GraphQLID },
-        courseId: { type: GraphQLID }
-      },
-      resolve(parent, args) {
-        return Category.find({ courseId: args.courseId });
-      }
-    }
+    authorId: { type: GraphQLString }
   })
 });
 
@@ -100,7 +58,7 @@ const RootQuery = new GraphQLObjectType({
     group: {
       type: GroupType,
       args: {
-        _id: {
+        id: {
           type: GraphQLID
         },
         name: { type: GraphQLString },
@@ -108,8 +66,8 @@ const RootQuery = new GraphQLObjectType({
         groupId: { type: GraphQLString }
       },
       resolve(parent, args) {
-        if (args._id) {
-          return Group.find({ _id: args._id });
+        if (args.id) {
+          return Group.find({ id: args.id });
         }
         if (args.groupId) {
           return Group.find({ groupId: args.groupId });
@@ -135,16 +93,12 @@ const Mutation = new GraphQLObjectType({
         },
         authorId: {
           type: GraphQLString
-        },
-        name: {
-          type: GraphQLString
         }
       },
       resolve(parent, args) {
         let group = new Group({
           groupId: args.groupId,
-          authorId: args.authorId,
-          name: args.name
+          authorId: args.authorId
         });
         return group.save();
       }

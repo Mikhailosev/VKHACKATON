@@ -12,16 +12,25 @@ class GroupForm extends Component {
       groupId: "",
       authorId: ""
     };
+    this.onSelectChange = this.onSelectChange.bind(this);
   }
   displayGroups() {
     console.log(this.props);
     return this.props.groups.response.items.map(group => {
       return (
-        <option value={group} key={group.id}>
+        <option value={group.id} key={group.id}>
           {group.name} {<Avatar src={group.photo_50}></Avatar>}
         </option>
       );
     });
+  }
+  onSelectChange(e) {
+    this.setState({
+      groupId: e.target.value.groupId,
+      authorId: e.target.value.authorId,
+      name: e.target.value.name
+    });
+    console.log(this.state);
   }
 
   submitForm(e) {
@@ -29,7 +38,6 @@ class GroupForm extends Component {
     console.log(this.state);
     this.props.addGroupMutation({
       variables: {
-        name: this.state.name,
         groupId: this.state.groupId,
         authorId: this.state.authorId
       }
@@ -43,9 +51,8 @@ class GroupForm extends Component {
           <select
             onChange={e =>
               this.setState({
-                groupId: e.target.value.groupId,
-                authorId: e.target.value.authorId,
-                name: e.target.value.name
+                groupId: e.target.value,
+                authorId: this.props.user.id.toString()
               })
             }
           >

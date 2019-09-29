@@ -342,7 +342,12 @@ class App extends React.Component {
         <Route
           path="/register"
           render={props => (
-            <GroupForm {...props} groups={this.state.groups} id="group" />
+            <GroupForm
+              {...props}
+              user={this.state.fetchedUser}
+              groups={this.state.groups}
+              id="group"
+            />
           )}
         />
         <Route path="/" exact component={Feed}></Route>

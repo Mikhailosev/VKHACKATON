@@ -37,9 +37,8 @@ export const getPostBuyQuery = gql`
   }
 `;
 export const addGroupMutation = gql`
-  mutation($name: String!, $groupId: String!, $authorId: String!) {
-    addBook(name: $name, genre: $genre, authorId: $authorId) {
-      name
+  mutation($groupId: String!, $authorId: String!) {
+    addGroup(authorId: $authorId, groupId: $groupId) {
       id
       groupId
       authorId

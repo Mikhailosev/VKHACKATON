@@ -10,6 +10,7 @@ const PostSchema = new Schema({
   likes: Array,
   viewed: Number,
   buy: Boolean,
-  content: String
+  content: String,
+  timetoread: Number
 });
 module.exports = mongoose.model("Post", PostSchema);
