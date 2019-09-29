@@ -3,6 +3,7 @@ import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { Avatar } from "@vkontakte/vkui";
 import { addGroupMutation } from "../queries/queries";
+import { Link } from "react-router-dom";
 
 class GroupForm extends Component {
   constructor(props) {
