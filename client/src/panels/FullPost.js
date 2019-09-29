@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { platform, IOS } from "@vkontakte/vkui";
+import {platform, IOS, Group} from "@vkontakte/vkui";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
 import HeaderButton from "@vkontakte/vkui/dist/components/HeaderButton/HeaderButton";
@@ -8,9 +8,10 @@ import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import Icon24Back from "@vkontakte/icons/dist/24/back";
 import logo from "../img/logo.png";
 import { graphql } from "react-apollo";
-import { getPostQuery } from "../queries/queries";
+import {getPostFullQuery, getPostQuery} from "../queries/queries";
 import photo from "../img/photo.jpg";
 import "./Feed.css";
+import Div from "@vkontakte/vkui/dist/components/Div/Div";
 
 class FullPost extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class FullPost extends React.Component {
       let teaser = "";
       let content = "";
       let image = "";
-      let buy = "true";
+      let buy = "";
 
       if (this.props.data.post) {
           title = this.props.data.post.title;
@@ -78,7 +79,7 @@ class FullPost extends React.Component {
 
               <Group>
           <Div>
-              {buy ? "Платный пост" : "Бесплатный пост"}
+              {buy ? "Неоплаченный пост" : "Оплаченный пост"}
           </Div>
               </Group>
       </div>
