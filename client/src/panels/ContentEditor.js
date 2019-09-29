@@ -24,7 +24,14 @@ class ContentEditor extends React.Component {
     this.setState({ title: event.target.value });
     console.log(this.state.title);
   };
-
+  changeTeaser = event => {
+    this.setState({ teaser: event.target.value });
+    console.log(this.state.teaser);
+  };
+  changeTimeToRead = event => {
+    this.setState({ timetoread: event.target.value });
+    console.log(this.state.timetoread);
+  };
   fileChangedHandler = event => {
     this.setState({ selectedFile: event.target.files[0] });
   };
@@ -52,14 +59,7 @@ class ContentEditor extends React.Component {
       }
     );
   };
-  changeTeaser = event => {
-    this.setState({ teaser: event.target.value });
-    console.log(this.state.teaser);
-  };
-  changeTimeToRead = event => {
-    this.setState({ timetoread: event.target.value });
-    console.log(this.state.timetoread);
-  };
+
   changeBuy = event => {
     this.setState({ buy: event.target.value });
     console.log(this.state.buy);
@@ -99,6 +99,26 @@ class ContentEditor extends React.Component {
             placeholder="Введите заголовок"
             onChange={this.changeTitle}
           />
+          <input
+            style={{
+              boxShadow: "0 0 5px #999999",
+              fontSize: "1.1rem",
+              color: "black",
+              width: "97%",
+              height: "2rem",
+              marginLeft: "1.25%",
+              marginTop: "1%",
+              marginBottom: "1%",
+              boxSizing: "border-box",
+              padding: "5px",
+              paddingLeft: "10px",
+              border: "1px solid lightgrey",
+              borderRadius: "10px"
+            }}
+            type="number"
+            placeholder="Введите время чтения статьи"
+            onChange={this.changeTimeToRead}
+          />
           <textarea
             style={{
               boxShadow: "0 0 5px #999999",
@@ -121,26 +141,6 @@ class ContentEditor extends React.Component {
             type="text"
             placeholder="Введите текст для предпросмотра"
             onChange={this.changeTeaser}
-          />
-          <input
-            style={{
-              boxShadow: "0 0 5px #999999",
-              fontSize: "1.1rem",
-              color: "black",
-              width: "97%",
-              height: "2rem",
-              marginLeft: "1.25%",
-              marginTop: "1%",
-              marginBottom: "1%",
-              boxSizing: "border-box",
-              padding: "5px",
-              paddingLeft: "10px",
-              border: "1px solid lightgrey",
-              borderRadius: "10px"
-            }}
-            type="Number"
-            placeholder="Введите время чтения статьи"
-            onChange={this.changeTimeToRead}
           />
           <Select
             style={{
