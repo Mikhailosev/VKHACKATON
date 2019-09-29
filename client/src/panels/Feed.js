@@ -21,7 +21,6 @@ class Feed extends React.Component {
     let posts = [];
     if (this.props.data.posts) {
       console.log(this.props);
-
       posts = this.props.data.posts.reverse().map(res => {
         if (res.buy === true) {
           return (

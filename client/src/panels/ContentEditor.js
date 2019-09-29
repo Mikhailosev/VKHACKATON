@@ -49,15 +49,11 @@ class ContentEditor extends React.Component {
     formData.append("buy", this.state.buy);
     formData.append("content", this.state.content);
     formData.append("timetoread", this.state.timetoread);
-    axios.post(
-      "https://arcane-savannah-41356.herokuapp.com/postAdd",
-      formData,
-      {
-        onUploadProgress: progressEvent => {
-          console.log(progressEvent.loaded / progressEvent.total);
-        }
+    axios.post("https://pure-sands-70477.herokuapp.com/postAdd", formData, {
+      onUploadProgress: progressEvent => {
+        console.log(progressEvent.loaded / progressEvent.total);
       }
-    );
+    });
   };
 
   changeBuy = event => {

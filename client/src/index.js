@@ -12,7 +12,7 @@ import App from "./App";
 // Init VK  Mini App
 connect.send("VKWebAppInit");
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql"
+  uri: "https://pure-sands-70477.herokuapp.com/graphql"
 });
 // Если вы хотите, чтобы ваше веб-приложение работало в оффлайне и загружалось быстрее,
 // расскомментируйте строку с registerServiceWorker();
