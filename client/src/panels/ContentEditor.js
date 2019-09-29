@@ -13,7 +13,8 @@ class ContentEditor extends React.Component {
       title: "",
       teaser: "",
       buy: "",
-      selectedFile: ""
+      selectedFile: "",
+      timetoread: ""
     };
     this.fileInput = React.createRef();
     this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -40,15 +41,13 @@ class ContentEditor extends React.Component {
     formData.append("teaser", this.state.teaser);
     formData.append("buy", this.state.buy);
     formData.append("content", this.state.content);
+    formData.append("timetoread", this.state.timetoread);
     axios.post(
       "https://arcane-savannah-41356.herokuapp.com/postAdd",
       formData,
       {
         onUploadProgress: progressEvent => {
           console.log(progressEvent.loaded / progressEvent.total);
-        },
-        headers: {
-          "Access-Control-Allow-Origin": "*"
         }
       }
     );
@@ -56,6 +55,10 @@ class ContentEditor extends React.Component {
   changeTeaser = event => {
     this.setState({ teaser: event.target.value });
     console.log(this.state.teaser);
+  };
+  changeTeaser = event => {
+    this.setState({ timetoread: event.target.value });
+    console.log(this.state.timetoread);
   };
   changeBuy = event => {
     this.setState({ buy: event.target.value });
@@ -118,6 +121,26 @@ class ContentEditor extends React.Component {
             type="text"
             placeholder="Введите текст для предпросмотра"
             onChange={this.changeTeaser}
+          />
+          <input
+            style={{
+              boxShadow: "0 0 5px #999999",
+              fontSize: "1.1rem",
+              color: "black",
+              width: "97%",
+              height: "2rem",
+              marginLeft: "1.25%",
+              marginTop: "1%",
+              marginBottom: "1%",
+              boxSizing: "border-box",
+              padding: "5px",
+              paddingLeft: "10px",
+              border: "1px solid lightgrey",
+              borderRadius: "10px"
+            }}
+            type="Number"
+            placeholder="Введите время чтения статьи"
+            onChange={this.changeTimeToRead}
           />
           <Select
             style={{

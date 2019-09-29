@@ -43,7 +43,7 @@ class Feed extends React.Component {
                 />
                 <h1>{res.title}</h1>
                 <h2>{res.teaser}</h2>
-                <h4></h4>
+                <h4>{res.timetoread}</h4>
                 {/* <div
             className="content"
             dangerouslySetInnerHTML={{ __html: res.content }}
@@ -80,7 +80,7 @@ class Feed extends React.Component {
                 />
                 <h1>{res.title}</h1>
                 <h2>{res.teaser}</h2>
-                <h4></h4>
+                <h4>{res.timetoread}</h4>
                 {/* <div
             className="content"
             dangerouslySetInnerHTML={{ __html: res.content }}
@@ -112,14 +112,16 @@ class Feed extends React.Component {
             height: "50px",
             backgroundColor: "#4680c2",
             opacity: "1",
-              textAlign: "left",
-              paddingTop: "23px",
-              paddingLeft: "20px",
-              fontSize: "1.3rem",
-              color: "white",
-              fontWeight: "bold"
+            textAlign: "left",
+            paddingTop: "23px",
+            paddingLeft: "20px",
+            fontSize: "1.3rem",
+            color: "white",
+            fontWeight: "bold"
           }}
-        >Pay2Win@VK Hackathon</div>
+        >
+          Pay2Win@VK Hackathon
+        </div>
         {posts}
       </div>
     );

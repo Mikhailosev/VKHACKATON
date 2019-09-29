@@ -49,6 +49,21 @@ class GroupForm extends Component {
         <div className="field">
           <label>Groups:</label>
           <select
+            style={{
+              boxShadow: "0 0 5px #999999",
+              fontSize: "1.1rem",
+              color: "black",
+              width: "97%",
+              height: "2rem",
+              marginLeft: "1.25%",
+              marginTop: "1%",
+              marginBottom: "1%",
+              boxSizing: "border-box",
+              padding: "5px",
+              paddingLeft: "10px",
+              border: "1px solid lightgrey",
+              borderRadius: "10px"
+            }}
             onChange={e =>
               this.setState({
                 groupId: e.target.value,
@@ -60,7 +75,27 @@ class GroupForm extends Component {
             {this.displayGroups()}
           </select>
         </div>
-        <button>+</button>
+        <Link to="/more">
+          <button
+            style={{
+              boxShadow: "0 0 5px #999999",
+              fontSize: "1.1rem",
+              color: "black",
+              width: "97%",
+              height: "2rem",
+              marginLeft: "1.25%",
+              marginTop: "1%",
+              marginBottom: "1%",
+              boxSizing: "border-box",
+              padding: "5px",
+              paddingLeft: "10px",
+              border: "1px solid lightgrey",
+              borderRadius: "10px"
+            }}
+          >
+            +
+          </button>
+        </Link>
       </form>
     );
   }

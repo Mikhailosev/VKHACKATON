@@ -50,7 +50,6 @@ router.post("/postAdd", upload.single("postImage"), (req, res) => {
     .save()
     .then(result => {
       console.log(req.file.size);
-
       res.send(result);
     })
     .catch(err => {
