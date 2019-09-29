@@ -1,8 +1,7 @@
 import React from "react";
-import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
-import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
 import { withRouter } from "react-router-dom";
-
+import { Search } from "@vkontakte/vkui";
+import "./Feed.css";
 class Discover extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +9,7 @@ class Discover extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="qqq">
         <div
           style={{
             display: "block",
@@ -22,6 +21,7 @@ class Discover extends React.Component {
             opacity: "1"
           }}
         ></div>
+        <Search className="search" theme="default" />
       </div>
     );
   }
