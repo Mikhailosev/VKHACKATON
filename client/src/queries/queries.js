@@ -11,6 +11,17 @@ export const getPostsQuery = gql`
     }
   }
 `;
+export const getPostsQuery2 = gql`
+  {
+    posts {
+      id
+      title
+      viewed
+      image
+      buy
+    }
+  }
+`;
 export const getPostFullQuery = gql`
   query($id: ID!) {
     post(id: $id) {
