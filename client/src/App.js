@@ -185,9 +185,9 @@ class App extends React.Component {
     );
   }
 
-  postToWall() {
+  postToWall(message) {
     VKConnect.send("VKWebAppShowWallPostBox", {
-      message: "Hello!",
+      message: message,
       v: "5.101"
     })
       .then(response => console.log(response))
@@ -287,20 +287,26 @@ class App extends React.Component {
           path="/post/:postId"
           exact
           render={props => {
-            return <FullPost {...props}
-                             shareToWallHandler={() => this.postToWall()}
-                             addToStoryHandler={() => this.addToStory()}
-            />;
+            return (
+              <FullPost
+                {...props}
+                shareToWallHandler={this.postToWall}
+                addToStoryHandler={() => this.addToStory()}
+              />
+            );
           }}
         />
         <Route
           path="/postBuy/:postId"
           exact
           render={props => {
-            return <PostBuy {...props}
-                            shareToWallHandler={() => this.postToWall()}
-                            addToStoryHandler={() => this.addToStory()}
-            />;
+            return (
+              <PostBuy
+                {...props}
+                shareToWallHandler={this.postToWall}
+                addToStoryHandler={() => this.addToStory()}
+              />
+            );
           }}
         />
         <Route
