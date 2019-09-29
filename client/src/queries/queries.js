@@ -37,9 +37,16 @@ export const getPostBuyQuery = gql`
   }
 `;
 export const addGroupMutation = gql`
+<<<<<<< HEAD
   mutation($groupId: String!, $authorId: String!) {
     addGroup(authorId: $authorId, groupId: $groupId) {
       id
+=======
+  mutation($name: String!, $groupId: String!, $authorId: String!) {
+    addBook(name: $name, genre: $genre, authorId: $authorId) {
+      name
+      idv
+>>>>>>> ddbd2fe813c4aefb795e593397c6768803967ac0
       groupId
       authorId
     }
