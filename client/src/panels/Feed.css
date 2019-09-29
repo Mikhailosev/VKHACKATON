@@ -119,3 +119,34 @@ h4 {
 .qqq {
   z-index: -123;
 }
+.posts_container:last-child {
+  margin-bottom: 50px;
+}
+.al {
+  text-align: center;
+}
+.achieve {
+  color: #000;
+  font-size: 150%;
+}
+.persik {
+  height: 100px;
+  width: auto;
+}
+
+.img1 {
+  margin-top: 50px;
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+.img2 {
+  margin-top: 70px;
+  display: inline-block;
+  position: relative;
+  right: -5px;
+}
+.img3 {
+  position: absolute;
+}
